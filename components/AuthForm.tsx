@@ -1,6 +1,7 @@
 'use client'
 
 import axios from 'axios'
+import { signIn } from 'next-auth/react'
 import { useCallback, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
@@ -35,22 +36,45 @@ const AuthForm = () => {
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         setIsLoading(true)
-        
+
         if (variant === 'Register') {
-            axios.post('/api/register', data)
+            axios
+                .post('/api/register', data)
                 .then(() => toast.success('Account created successfully'))
                 .catch(() => toast.error('Something went wrong'))
                 .finally(() => setIsLoading(false))
         }
         if (variant === 'Login') {
-            // NextAuth SignIn
+            signIn('credentials', {
+                ...data,
+                redirect: false,
+            })
+                .then((callback) => {
+                    if (callback?.error) {
+                        toast.error('Invalid credentials')
+                    }
+
+                    if (callback?.ok && !callback?.error) {
+                        toast.success('Logged in successfully')
+                    }
+                })
+                .finally(() => setIsLoading(false))
         }
-        // setIsLoading(false)
     }
 
     const socialAction = (action: string) => {
         setIsLoading(true)
-        // NextAuth Social SignIn
+        signIn(action, { redirect: false })
+            .then((callback) => {
+                if (callback?.error) {
+                    toast.error('Something went wrong')
+                }
+
+                if (callback?.ok && !callback?.error) {
+                    toast.success('Logged in successfully')
+                }
+            })
+            .finally(() => setIsLoading(false))
     }
 
     return (
