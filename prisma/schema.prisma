@@ -11,7 +11,7 @@ datasource db {
 }
 
 model User {
-  id             String    @id @default(uuid()) @map("_id") @db.ObjectId
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
   name           String?
   email          String?   @unique
   emailVerified  DateTime?
@@ -31,7 +31,7 @@ model User {
 }
 
 model Account {
-  id                String  @id @default(uuid()) @map("_id") @db.ObjectId
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
   userId            String  @db.ObjectId
   type              String
   provider          String
@@ -50,7 +50,7 @@ model Account {
 }
 
 model Conversation {
-  id            String   @id @default(uuid()) @map("_id") @db.ObjectId
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
   createdAt     DateTime @default(now())
   lastMessageAt DateTime @default(now())
   name          String?
@@ -64,7 +64,7 @@ model Conversation {
 }
 
 model Message {
-  id        String   @id @default(uuid()) @map("_id") @db.ObjectId
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   body      String?
   image     String?
   createdAt DateTime @default(now())
@@ -78,3 +78,4 @@ model Message {
   senderId String @db.ObjectId
   sender   User   @relation(fields: [senderId], references: [id], onDelete: Cascade)
 }
+

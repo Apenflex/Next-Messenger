@@ -20,8 +20,8 @@ const Input: React.FC<InputProps> = ({ label, id, type, required, register, erro
             </label>
             <div className="mt-2">
                 <input
-                    type={type}
                     id={id}
+                    type={type}
                     autoComplete={id}
                     disabled={disabled}
                     {...register(id, { required })}
