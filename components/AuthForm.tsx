@@ -35,46 +35,48 @@ const AuthForm = () => {
     })
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-        setIsLoading(true)
+        try {
+            setIsLoading(true)
+            if (variant === 'Register') {
+                await axios.post('/api/register', data)
+                toast.success('Account created successfully')
+            }
 
-        if (variant === 'Register') {
-            axios
-                .post('/api/register', data)
-                .then(() => toast.success('Account created successfully'))
-                .catch(() => toast.error('Something went wrong'))
-                .finally(() => setIsLoading(false))
-        }
-        if (variant === 'Login') {
-            signIn('credentials', {
-                ...data,
-                redirect: false,
-            })
-                .then((callback) => {
-                    if (callback?.error) {
-                        toast.error('Invalid credentials')
-                    }
-
-                    if (callback?.ok && !callback?.error) {
-                        toast.success('Logged in successfully')
-                    }
+            if (variant === 'Login') {
+                const callback = await signIn('credentials', {
+                    ...data,
+                    redirect: false,
                 })
-                .finally(() => setIsLoading(false))
+
+                if (callback?.error) {
+                    toast.error('Invalid credentials')
+                } else {
+                    toast.success('Logged in successfully')
+                }
+            }
+        } catch (error) {
+            toast.error('Something went wrong')
+        } finally {
+            setIsLoading(false)
         }
     }
 
-    const socialAction = (action: string) => {
-        setIsLoading(true)
-        signIn(action, { redirect: false })
-            .then((callback) => {
-                if (callback?.error) {
-                    toast.error('Something went wrong')
-                }
 
-                if (callback?.ok && !callback?.error) {
-                    toast.success('Logged in successfully')
-                }
-            })
-            .finally(() => setIsLoading(false))
+    const socialAction = async (action: string) => {
+        try {
+            setIsLoading(true)
+            const callback = await signIn(action, { redirect: false })
+
+            if (callback?.error) {
+                toast.error('Something went wrong')
+            } else {
+                toast.success('Logged in successfully')
+            }
+        } catch (error) {
+            toast.error('Something went wrong')
+        } finally {
+            setIsLoading(false)
+        }
     }
 
     return (
