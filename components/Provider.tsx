@@ -3,7 +3,7 @@
 import { SessionProvider } from 'next-auth/react'
 import { Toaster } from 'react-hot-toast'
 
-const Provider = ({ children }: { children: React.ReactNode }) => {
+const Provider = ({ children }:{children: React.ReactNode}) => {
     return (
         <SessionProvider>
             <Toaster />

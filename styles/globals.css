@@ -22,3 +22,12 @@ body,
 .authSocialButton {
 	@apply inline-flex w-full justify-center rounded-md bg-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0
 }
+.DesctopSidebarContainer {
+	@apply hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-40 lg:w-20 xl:px-6 lg:overflow-y-auto lg:bg-white lg:border-r-[1px] lg:pb-4 lg:flex lg:flex-col justify-between
+}
+.MobileFooter {
+	@apply fixed justify-between w-full bottom-0 z-40 flex items-center bg-white border-t-[1px] lg:hidden
+}
+.MobileItemLink {
+	@apply flex gap-x-3 text-sm leading-6 font-semibold w-full justify-center p-4 text-gray-500 hover:text-black hover:bg-gray-100
+}

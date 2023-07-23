@@ -1,8 +1,8 @@
 'use client'
 
-import axios from 'axios'
-import { signIn } from 'next-auth/react'
-import { useCallback, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { signIn, useSession } from 'next-auth/react'
+import { use, useCallback, useEffect, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { BsGithub, BsGoogle } from 'react-icons/bs'
@@ -10,12 +10,21 @@ import { BsGithub, BsGoogle } from 'react-icons/bs'
 import AuthSocialButton from '@/components/AuthSocialButton'
 import Button from '@/components/Button'
 import Input from '@/components/inputs/Input'
+import { delay } from '@/utils/async'
 
 type Variant = 'Login' | 'Register'
 
 const AuthForm = () => {
+    const session = useSession()
+    const router = useRouter()
     const [variant, setVariant] = useState<Variant>('Login')
     const [isloading, setIsLoading] = useState(false)
+
+    useEffect(() => {
+        if (session?.status === 'authenticated') {
+            router.push('/users')
+        }
+    }, [session?.status, router])
 
     const toggleVariant = useCallback(() => {
         setVariant((prev) => (prev === 'Login' ? 'Register' : 'Login'))
@@ -38,8 +47,13 @@ const AuthForm = () => {
         try {
             setIsLoading(true)
             if (variant === 'Register') {
-                await axios.post('/api/register', data)
+                await fetch('/api/register', {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                })
                 toast.success('Account created successfully')
+                await delay(700)
+                await signIn('credentials', data)
             }
 
             if (variant === 'Login') {
@@ -52,13 +66,14 @@ const AuthForm = () => {
                     toast.error('Invalid credentials')
                 } else {
                     toast.success('Logged in successfully')
+                    await delay(1000)
+                    router.push('/users')
                 }
             }
         } catch (error) {
             toast.error('Something went wrong')
-        } finally {
-            setIsLoading(false)
         }
+        setIsLoading(false)
     }
 
 
@@ -71,6 +86,8 @@ const AuthForm = () => {
                 toast.error('Something went wrong')
             } else {
                 toast.success('Logged in successfully')
+                await delay(1000)
+                router.push('/users')
             }
         } catch (error) {
             toast.error('Something went wrong')
