@@ -4,12 +4,12 @@
 import { useSession } from 'next-auth/react'
 import { useState } from 'react'
 
+import Avatar from '@/components/sidebar/Avatar'
 import Desktopitem from '@/components/sidebar/Desktopitem'
 import useRoutes from '@/utils/hooks/useRoutes'
 
 const DesktopSidebar = () => {
     const { data: session } = useSession()
-    
     const user = session?.user
     // console.log(user)
     const routes = useRoutes()
@@ -30,6 +30,11 @@ const DesktopSidebar = () => {
                         />
                     ))}
                 </ul>
+            </nav>
+            <nav className="mt-4 flex flex-col justify-between items-center">
+                <div className="cursor-pointer hover:opacity-75 transition" onClick={() => setIsOpen(true)}>
+                    <Avatar user={user} />
+                </div>
             </nav>
         </div>
     )
