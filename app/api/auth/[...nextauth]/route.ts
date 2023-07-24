@@ -1,6 +1,6 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import bcrypt from 'bcrypt'
-import NextAuth, { AuthOptions } from 'next-auth'
+import NextAuth, { AuthOptions, Session } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GithubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
@@ -47,6 +47,23 @@ export const authOptions: AuthOptions = {
             },
         }),
     ],
+    callbacks: {
+        async session({ session }) {
+            if (session?.user?.email) {
+                const sessionUser = await prisma.user.findUnique({
+                    where: { email: session.user.email },
+                })
+
+                if (sessionUser) {
+                    return { ...session, user: sessionUser }
+                } else {
+                    // Обробка випадку, коли користувача не знайдено
+                    console.error('User not found')
+                }
+            }
+            return session
+        },
+    },
     debug: process.env.NODE_ENV === 'development',
     session: {
         strategy: 'jwt',

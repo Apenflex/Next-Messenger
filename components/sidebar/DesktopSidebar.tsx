@@ -1,17 +1,17 @@
 'use client'
 
-import { User } from '@prisma/client'
+// import { User } from '@prisma/client'
+import { useSession } from 'next-auth/react'
 import { useState } from 'react'
 
 import Desktopitem from '@/components/sidebar/Desktopitem'
 import useRoutes from '@/utils/hooks/useRoutes'
 
-interface DesktopSidebarProps {
-    currentUser: User
-}
-
-const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ currentUser }) => {
-    console.log(currentUser)
+const DesktopSidebar = () => {
+    const { data: session } = useSession()
+    
+    const user = session?.user
+    // console.log(user)
     const routes = useRoutes()
     const [isOpen, setIsOpen] = useState(false)
 
