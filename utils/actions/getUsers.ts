@@ -10,7 +10,7 @@ const getUsers = async () => {
     }
 
     try {
-        const users = await prisma.user.findMany({
+        const allUsers = await prisma.user.findMany({
             orderBy: {
                 createdAt: 'desc',
             },
@@ -21,10 +21,9 @@ const getUsers = async () => {
             },
         })
 
-        return users
+        return allUsers
     } catch (error: any) {
         return []
     }
 }
-
 export default getUsers

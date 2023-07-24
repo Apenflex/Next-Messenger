@@ -31,3 +31,9 @@ body,
 .MobileItemLink {
 	@apply flex gap-x-3 text-sm leading-6 font-semibold w-full justify-center p-4 text-gray-500 hover:text-black hover:bg-gray-100
 }
+.UserListAside {
+	@apply fixed inset-y-0 pb-20 lg:pb-0 lg:left-20 lg:w-80 lg:block overflow-y-auto border-r border-gray-200 block w-full left-0
+}
+.UserBox {
+	@apply w-full relative flex items-center space-x-3 bg-white p-3 hover:bg-neutral-100 rounded-lg cursor-pointer transition
+}
