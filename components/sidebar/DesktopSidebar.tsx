@@ -1,17 +1,17 @@
 'use client'
 
-// import { User } from '@prisma/client'
-import { useSession } from 'next-auth/react'
+import { User } from '@prisma/client'
 import { useState } from 'react'
 
 import Avatar from '@/components/sidebar/Avatar'
 import Desktopitem from '@/components/sidebar/Desktopitem'
 import useRoutes from '@/utils/hooks/useRoutes'
 
-const DesktopSidebar = () => {
-    const { data: session } = useSession()
-    const user = session?.user
-    // console.log(user)
+interface DesktopSidebarProps {
+    currentUser: User
+}
+
+const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ currentUser }) => {
     const routes = useRoutes()
     const [isOpen, setIsOpen] = useState(false)
 
@@ -33,7 +33,7 @@ const DesktopSidebar = () => {
             </nav>
             <nav className="mt-4 flex flex-col justify-between items-center">
                 <div className="cursor-pointer hover:opacity-75 transition" onClick={() => setIsOpen(true)}>
-                    <Avatar user={user} />
+                    <Avatar user={currentUser} />
                 </div>
             </nav>
         </div>

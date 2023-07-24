@@ -11,12 +11,12 @@ export const metadata: Metadata = {
     description: 'A Next.js messenger app built with Next.js and Tailwind CSS',
 }
 
-export default function RootLayout({ children, session }: { children: React.ReactNode, session: any }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     
     return (
         <html lang="en">
             <body className={inter.className}>
-                <Provider session={session}>
+                <Provider>
                     {children}
                 </Provider>
             </body>

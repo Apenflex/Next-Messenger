@@ -5,12 +5,11 @@ import { Toaster } from 'react-hot-toast'
 
 interface ProviderProps {
     children: React.ReactNode
-    session: any
 }
 
-const Provider: React.FC<ProviderProps> = ({ children, session }) => {
+const Provider: React.FC<ProviderProps> = ({ children }) => {
     return (
-        <SessionProvider session={session}>
+        <SessionProvider >
             <Toaster />
             {children}
         </SessionProvider>

@@ -47,22 +47,22 @@ export const authOptions: AuthOptions = {
             },
         }),
     ],
-    callbacks: {
-        async session({ session }) {
-            if (session?.user?.email) {
-                const sessionUser = await prisma.user.findUnique({
-                    where: { email: session.user.email },
-                })
+    // callbacks: {
+    //     async session({ session }) {
+    //         if (session?.user?.email) {
+    //             const sessionUser = await prisma.user.findUnique({
+    //                 where: { email: session.user.email },
+    //             })
 
-                if (sessionUser) {
-                    return { ...session, user: sessionUser }
-                } else {
-                    console.error('User not found')
-                }
-            }
-            return session
-        },
-    },
+    //             if (sessionUser) {
+    //                 return { ...session, user: sessionUser }
+    //             } else {
+    //                 console.error('User not found')
+    //             }
+    //         }
+    //         return session
+    //     },
+    // },
     debug: process.env.NODE_ENV === 'development',
     session: {
         strategy: 'jwt',
