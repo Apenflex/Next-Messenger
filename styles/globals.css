@@ -37,3 +37,6 @@ body,
 .UserBox {
     @apply w-full relative flex items-center space-x-3 bg-white p-3 hover:bg-neutral-100 rounded-lg cursor-pointer transition;
 }
+.ConversationHeader {
+    @apply bg-white w-full flex border-b-[1px] sm:px-4 py-3 px-4 lg:px-6 justify-between items-center shadow-sm
+}
