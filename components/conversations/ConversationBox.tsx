@@ -10,7 +10,7 @@ import { useCallback, useMemo } from 'react'
 import { FullConversationType } from '@/types'
 import useOtherUser from '@/utils/hooks/useOtherUser'
 
-import Avatar from '../sidebar/Avatar'
+import Avatar from '../Avatar'
 
 interface ConversationBoxProps {
     data: FullConversationType

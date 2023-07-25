@@ -3,7 +3,7 @@
 import { User } from '@prisma/client'
 import { useState } from 'react'
 
-import Avatar from '@/components/sidebar/Avatar'
+import Avatar from '@/components/Avatar'
 import Desktopitem from '@/components/sidebar/Desktopitem'
 import useRoutes from '@/utils/hooks/useRoutes'
 

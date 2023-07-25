@@ -4,7 +4,7 @@ import { User } from '@prisma/client'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 
-import Avatar from '@/components/sidebar/Avatar'
+import Avatar from '@/components/Avatar'
 
 interface UserBoxProps {
     data: User

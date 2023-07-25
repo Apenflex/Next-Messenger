@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useMemo } from 'react'
 import { HiChevronLeft, HiEllipsisHorizontal } from 'react-icons/hi2'
 
-import Avatar from '@/components/sidebar/Avatar'
+import Avatar from '@/components/Avatar'
 import useOtherUser from '@/utils/hooks/useOtherUser'
 
 interface HeaderProps {
