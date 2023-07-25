@@ -22,7 +22,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
                 hashedPassword,
             },
         });
-        // console.log('server',user);
+        
         return NextResponse.json(user, { status: 200 });
     } catch (error) {
         console.log(error);

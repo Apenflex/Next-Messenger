@@ -5,35 +5,35 @@
 html,
 body,
 :root {
-	height: 100%;
+    height: 100%;
 }
 .form_input {
-	@apply form-input block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6;
+    @apply form-input block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6;
 }
 .form_button {
-	@apply flex justify-center rounded-md px-3 py-2 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+    @apply flex justify-center rounded-md px-3 py-2 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
 }
 .form_button_default {
-	@apply bg-sky-500 hover:bg-sky-600 focus-visible:outline-sky-600;
+    @apply bg-sky-500 hover:bg-sky-600 focus-visible:outline-sky-600;
 }
 .form_button_danger {
-	@apply bg-rose-500 hover:bg-rose-600 focus-visible:outline-rose-600;
+    @apply bg-rose-500 hover:bg-rose-600 focus-visible:outline-rose-600;
 }
 .authSocialButton {
-	@apply inline-flex w-full justify-center rounded-md bg-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0
+    @apply inline-flex w-full justify-center rounded-md bg-white px-4 py-2 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0;
 }
 .DesctopSidebarContainer {
-	@apply hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-40 lg:w-20 xl:px-6 lg:overflow-y-auto lg:bg-white lg:border-r-[1px] lg:pb-4 lg:flex lg:flex-col justify-between
+    @apply hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-40 lg:w-20 xl:px-6 lg:overflow-y-auto lg:bg-white lg:border-r-[1px] lg:pb-4 lg:flex lg:flex-col justify-between;
 }
 .MobileFooter {
-	@apply fixed justify-between w-full bottom-0 z-40 flex items-center bg-white border-t-[1px] lg:hidden
+    @apply fixed justify-between w-full bottom-0 z-40 flex items-center bg-white border-t-[1px] lg:hidden;
 }
 .MobileItemLink {
-	@apply flex gap-x-3 text-sm leading-6 font-semibold w-full justify-center p-4 text-gray-500 hover:text-black hover:bg-gray-100
+    @apply flex gap-x-3 text-sm leading-6 font-semibold w-full justify-center p-4 text-gray-500 hover:text-black hover:bg-gray-100;
 }
 .UserListAside {
-	@apply fixed inset-y-0 pb-20 lg:pb-0 lg:left-20 lg:w-80 lg:block overflow-y-auto border-r border-gray-200 block w-full left-0
+    @apply fixed inset-y-0 pb-20 lg:pb-0 lg:left-20 lg:w-80 lg:block overflow-y-auto border-r border-gray-200 block w-full left-0;
 }
 .UserBox {
-	@apply w-full relative flex items-center space-x-3 bg-white p-3 hover:bg-neutral-100 rounded-lg cursor-pointer transition
+    @apply w-full relative flex items-center space-x-3 bg-white p-3 hover:bg-neutral-100 rounded-lg cursor-pointer transition;
 }
