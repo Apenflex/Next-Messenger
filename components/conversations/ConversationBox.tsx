@@ -1,6 +1,5 @@
 'use client'
 
-import { Conversation, Message, User } from '@prisma/client'
 import clsx from 'clsx'
 import { format } from 'date-fns'
 import { useRouter } from 'next/navigation'
@@ -30,10 +29,8 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({ data, selected }) => 
         const messages = data.messages || []
         return messages[messages.length - 1]
     }, [data.messages])
-
-    const userEmail = useMemo(() => {
-        return session.data?.user?.email
-    }, [session.data?.user?.email])
+    
+    const userEmail = useMemo(() => session.data?.user?.email, [session.data?.user?.email])
 
     const hasSeen = useMemo(() => {
         if (!lastMessage) return false
@@ -76,5 +73,4 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({ data, selected }) => 
         </div>
     )
 }
-
 export default ConversationBox
