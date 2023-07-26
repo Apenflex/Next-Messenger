@@ -27,10 +27,10 @@ const ConversationList: React.FC<ConversationListProps> = ({ initialItems }) => 
             )}
         >
             <div className="px-5">
-                <div className="mb-4 flex justify-between pt-4">
-                    <div className="text-2xl font-bold text-neutral-800">Messages</div>
+                <div className="mb-4 flex justify-between border-b-2 pb-2 pt-4">
+                    <div className="text-2xl font-bold text-neutral-800 ">Messages</div>
                     <div className="cursor-pointer rounded-full bg-gray-100 p-2 text-gray-600 transition hover:opacity-75">
-                        <MdOutlineGroupAdd size={20} />
+                        <MdOutlineGroupAdd size={20} className='text-blue-500'/>
                     </div>
                 </div>
                 {items.map((item) => (

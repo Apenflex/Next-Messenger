@@ -13,7 +13,7 @@ const UserList: React.FC<UserListProps> = ({ items }) => {
         <aside className="UserListAside">
             <div className="px-5">
                 <div className="flex-col">
-                    <div className="text-2xl font-bold text-neutral-800 py-4">People</div>
+                    <div className="mb-2 border-b-2 pb-3 pt-4 text-2xl font-bold text-neutral-800">People</div>
                 </div>
                 {items.map((item) => (
                     <UserBox key={item.id} data={item} />
