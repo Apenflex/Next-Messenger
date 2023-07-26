@@ -28,7 +28,7 @@ const Input: React.FC<InputProps> = ({ label, id, type, required, register, erro
                     className={clsx(
                         `form_input`,
                         errors[id] && 'focus:ring-rose-500',
-                        disabled && 'opacity-50 cursor-default'
+                        disabled && 'cursor-default opacity-50'
                     )}
                 />
             </div>

@@ -24,10 +24,10 @@ const Header: React.FC<HeaderProps> = ({ conversation }) => {
     }, [conversation])
     return (
         <div className="ConversationHeader">
-            <div className="flex gap-3 items-center">
+            <div className="flex items-center gap-3">
                 <Link
                     href="/conversations"
-                    className="lg:hidden block text-sky-500 hover:text-sky-600 transition cursor-pointer"
+                    className="block cursor-pointer text-sky-500 transition hover:text-sky-600 lg:hidden"
                 >
                     <HiChevronLeft size={32} />
                 </Link>
@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({ conversation }) => {
                 </div>
             </div>
             <HiEllipsisHorizontal
-                className="text-sky-500 cursor-pointer hover:text-sky-600 transition"
+                className="cursor-pointer text-sky-500 transition hover:text-sky-600"
                 size={32}
                 onClick={() => {}}
             />

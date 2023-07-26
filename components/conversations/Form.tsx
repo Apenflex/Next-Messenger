@@ -29,8 +29,8 @@ const Form = () => {
         })
     }
     return (
-        <div className="py-4 px-4 bg-white border-t flex items-center gap-2 lg:gap-4 w-full">
-            <HiPhoto />
+        <div className="flex w-full items-center gap-2 border-t bg-white px-4 py-4 lg:gap-4">
+            <HiPhoto className="text-sky-500" size={30} />
         </div>
     )
 }

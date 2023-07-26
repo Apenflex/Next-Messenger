@@ -20,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({ type, fullWidth, children, onClick, sec
             disabled={disabled}
             className={clsx(
                 `form_button`,
-                disabled && 'opacity-50 cursor-default',
+                disabled && 'cursor-default opacity-50',
                 fullWidth && 'w-full',
                 secondary ? 'text-gray-900' : 'text-white',
                 danger && 'form_button_danger',

@@ -15,16 +15,16 @@ export default async function ConversationId({ params }: { params: IParams }) {
 
     if (!conversation) {
         return (
-            <div className="lg:pl-80 h-full">
-                <div className="h-full flex flex-col ">
+            <div className="h-full lg:pl-80">
+                <div className="flex h-full flex-col ">
                     <EmptyState />
                 </div>
             </div>
         )
     }
     return (
-        <div className="lg:pl-80 h-full">
-            <div className='h-full flex flex-col'>
+        <div className="h-full lg:pl-80">
+            <div className="flex h-full flex-col">
                 <Header conversation={conversation} />
                 <Body />
                 <Form />
