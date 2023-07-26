@@ -6,7 +6,7 @@ import getConversations from '@/utils/actions/getConversations'
 
 export default async function ConversationsLayout({ children }: { children: React.ReactNode }) {
     const conversations = await getConversations()
-    // console.log(conversations[0].users)
+    
     return (
         <Sidebar>
             <div className="h-full">

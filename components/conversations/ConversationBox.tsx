@@ -6,10 +6,9 @@ import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { useCallback, useMemo } from 'react'
 
+import Avatar from '@/components/Avatar'
 import { FullConversationType } from '@/types'
 import useOtherUser from '@/utils/hooks/useOtherUser'
-
-import Avatar from '../Avatar'
 
 interface ConversationBoxProps {
     data: FullConversationType
@@ -29,7 +28,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({ data, selected }) => 
         const messages = data.messages || []
         return messages[messages.length - 1]
     }, [data.messages])
-    
+
     const userEmail = useMemo(() => session.data?.user?.email, [session.data?.user?.email])
 
     const hasSeen = useMemo(() => {
