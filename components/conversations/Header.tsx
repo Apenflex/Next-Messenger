@@ -19,7 +19,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ conversation }) => {
     const otherUser = useOtherUser(conversation)
     const [drawerOpen, setDrawerOpen] = useState(false)
-
+    
     const statusText = useMemo(() => {
         if (conversation.isGroup) {
             return `${conversation.users.length} members`
