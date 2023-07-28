@@ -18,6 +18,10 @@ const ConversationList: React.FC<ConversationListProps> = ({ initialItems }) => 
     const [items, setItems] = useState(initialItems)
     const router = useRouter()
     const { conversationId, isOpen } = useConversation()
+
+    const conversationBox = items.map((item) => (
+        <ConversationBox key={item.id} data={item} selected={conversationId === item.id} />
+    ))
     return (
         <aside
             className={clsx(
@@ -33,9 +37,7 @@ const ConversationList: React.FC<ConversationListProps> = ({ initialItems }) => 
                         <MdOutlineGroupAdd size={20} className='text-blue-500'/>
                     </div>
                 </div>
-                {items.map((item) => (
-                    <ConversationBox key={item.id} data={item} selected={conversationId === item.id} />
-                ))}
+                {conversationBox}
             </div>
         </aside>
     )

@@ -7,6 +7,9 @@ body,
 :root {
     height: 100%;
 }
+.flex_center_between {
+    @apply flex items-center justify-between;
+}
 .form_input {
     @apply form-input block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6;
 }
@@ -26,7 +29,7 @@ body,
     @apply hidden justify-between lg:fixed lg:inset-y-0 lg:left-0 lg:z-40 lg:flex lg:w-20 lg:flex-col lg:overflow-y-auto lg:border-r-[1px] lg:bg-white lg:pb-4 xl:px-6;
 }
 .MobileFooter {
-    @apply fixed bottom-0 z-40 flex w-full items-center justify-between border-t-[1px] bg-white lg:hidden;
+    @apply flex_center_between fixed bottom-0 z-40 w-full border-t-[1px] bg-white lg:hidden;
 }
 .MobileItemLink {
     @apply flex w-full justify-center gap-x-3 p-4 text-sm font-semibold leading-6 text-gray-500 hover:bg-gray-100 hover:text-black;
@@ -38,5 +41,11 @@ body,
     @apply relative flex w-full cursor-pointer items-center space-x-3 rounded-lg bg-white p-3 transition hover:bg-neutral-100;
 }
 .ConversationHeader {
-    @apply flex w-full items-center justify-between border-b-[1px] bg-white px-4 py-3 shadow-sm sm:px-4 lg:px-6;
+    @apply flex_center_between w-full border-b-[1px] bg-white px-4 py-3 shadow-sm sm:px-4 lg:px-6;
+}
+.ConversationFormButton {
+    @apply cursor-pointer rounded-full bg-gradient-to-r from-green-500 to-blue-400 p-2 transition hover:bg-gradient-to-r hover:from-green-500 hover:to-blue-500;
+}
+.ProfileDrawerBtnClose {
+    @apply rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
 }

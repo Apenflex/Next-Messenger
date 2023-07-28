@@ -18,10 +18,12 @@ const Body: React.FC<BodyProps> = ({ initialMessages }) => {
     const { conversationId } = useConversation()
 
     useEffect(() => {
-        fetch(`/api/conversations/${conversationId}/seen`, {
-            method: 'POST',
-            body: JSON.stringify({ conversationId })
-        })
+        const res = async () => {
+            await fetch(`/api/conversations/${conversationId}/seen`, {
+                method: 'POST',
+                body: JSON.stringify({ conversationId }),
+            })
+        }
     }, [conversationId])
 
     return (

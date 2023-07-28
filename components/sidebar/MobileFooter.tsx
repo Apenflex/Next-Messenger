@@ -9,6 +9,7 @@ const MobileFooter = () => {
     const routes = useRoutes()
     const { isOpen } = useConversation()
     if (isOpen) return null
+
     return (
         <div className="MobileFooter">
             {routes.map((item) => (
@@ -24,5 +25,4 @@ const MobileFooter = () => {
         </div>
     )
 }
-
 export default MobileFooter

@@ -55,10 +55,7 @@ const Form = () => {
                     required
                     placeholder="Write a message"
                 />
-                <button
-                    className="cursor-pointer rounded-full bg-gradient-to-r from-green-500 to-blue-400 p-2 transition hover:bg-gradient-to-r hover:from-green-500 hover:to-blue-500"
-                    type="submit"
-                >
+                <button className="ConversationFormButton" type="submit">
                     <HiPaperAirplane className="text-white" size={18} />
                 </button>
             </form>

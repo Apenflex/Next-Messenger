@@ -15,7 +15,7 @@ interface MessageBoxProps {
 
 const MessageBox: React.FC<MessageBoxProps> = ({ data, isLast }) => {
     const session = useSession()
-    
+
     const isOwn = session.data?.user?.email === data?.sender?.email
     const seenlist = (data.seen || [])
         .filter((user) => user.email !== data?.sender?.email)
@@ -53,6 +53,9 @@ const MessageBox: React.FC<MessageBoxProps> = ({ data, isLast }) => {
                         <div>{data.body}</div>
                     )}
                 </div>
+                {isLast && isOwn && seenlist.length > 0 && (
+                    <div className="text-xs font-light text-gray-500">{`Seen by ${seenlist}`}</div>
+                )}
             </div>
         </div>
     )
