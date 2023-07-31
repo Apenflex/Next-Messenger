@@ -4,6 +4,5 @@
     "printWidth": 115,
     "semi": false,
     "singleQuote": true,
-    "plugins": ["prettier-plugin-tailwindcss"],
-    "tailwindConfig": "./tailwind.config.js"
+    "plugins": ["prettier-plugin-tailwindcss"]
 }

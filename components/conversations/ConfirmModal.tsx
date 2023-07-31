@@ -32,10 +32,10 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose }) => {
             toast.error('Something went wrong')
             return
         }
-        console.log('deleted')
+        // console.log('deleted')
         onClose()
         toast.success('Conversation deleted')
-        await delay(1000)
+        await delay(900)
         router.push('/conversations')
         router.refresh()
     }, [conversationId, onClose, router])
