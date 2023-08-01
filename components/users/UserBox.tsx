@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 
 import Avatar from '@/components/Avatar'
+import LoadingModal from '@/components/LoadingModal'
 
 interface UserBoxProps {
     data: User
@@ -27,16 +28,19 @@ const UserBox: React.FC<UserBoxProps> = ({ data }) => {
     }, [data, router])
 
     return (
-        <div className="UserBox" onClick={handleClick}>
-            <Avatar user={data} />
-            <div className="min-w-0 flex-1">
-                <div className="focus:outline-none">
-                    <div className="flex justify-between items-center mb-1">
-                        <p className="text-sm font-medium text-gray-900">{name}</p>
+        <>
+            {isLoading && <LoadingModal />}
+            <div className="UserBox" onClick={handleClick}>
+                <Avatar user={data} />
+                <div className="min-w-0 flex-1">
+                    <div className="focus:outline-none">
+                        <div className="mb-1 flex items-center justify-between">
+                            <p className="text-sm font-medium text-gray-900">{name}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 
