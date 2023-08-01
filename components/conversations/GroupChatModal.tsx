@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 
+import Button from '@/components/Button'
 import Input from '@/components/inputs/Input'
 import Select from '@/components/inputs/Select'
 import Modal from '@/components/Modal'
@@ -79,6 +80,14 @@ const GroupChatModal: React.FC<GroupChatModalProps> = ({ users, isOpen, onClose 
                             />
                         </div>
                     </div>
+                </div>
+                <div className="mt-6 flex items-center justify-end gap-x-6">
+                    <Button type="button" disabled={isLoading} onClick={onClose} secondary>
+                        Cancel
+                    </Button>
+                    <Button type="submit" disabled={isLoading}>
+                        Create
+                    </Button>
                 </div>
             </form>
         </Modal>
