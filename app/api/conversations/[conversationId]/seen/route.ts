@@ -1,7 +1,9 @@
+import { Conversation } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server'
 
 import prisma from '@/prisma/client'
 import getCurrentUser from '@/utils/actions/getCurrentUser'
+import { pusherServer } from '@/utils/pusher'
 
 interface IParams {
     conversationId?: string
@@ -9,12 +11,12 @@ interface IParams {
 
 export async function POST(req: NextRequest, { params }: { params: IParams }) {
     try {
-        const { conversationId } = params
         const currentUser = await getCurrentUser()
-
         if (!currentUser?.id || !currentUser?.email) {
             return new NextResponse('Unauthorized', { status: 401 })
         }
+
+        const { conversationId } = params
 
         const conversation = await prisma.conversation.findUnique({
             where: {
@@ -55,6 +57,17 @@ export async function POST(req: NextRequest, { params }: { params: IParams }) {
                 },
             },
         })
+
+        await pusherServer.trigger(currentUser.email, 'conversation:update', {
+            id: conversationId,
+            messages: [updatedMessage],
+        })
+
+        if (lastMessage.seenIds.indexOf(currentUser.id) !== -1) {
+            return NextResponse.json(conversation)
+        }
+
+        await pusherServer.trigger(conversationId!, 'message:update', updatedMessage)
 
         return NextResponse.json(updatedMessage)
     } catch (error) {

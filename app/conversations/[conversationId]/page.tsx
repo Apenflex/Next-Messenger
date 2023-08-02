@@ -12,7 +12,7 @@ interface IParams {
 export default async function ConversationId({ params }: { params: IParams }) {
     const conversation = await getConversationById(params.conversationId)
     const messages = await getMessages(params.conversationId)
-
+    
     if (!conversation) {
         return (
             <div className="h-full lg:pl-80">
