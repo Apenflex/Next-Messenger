@@ -2,16 +2,17 @@ import { NextRequest, NextResponse } from 'next/server'
 
 import prisma from '@/prisma/client'
 import getCurrentUser from '@/utils/actions/getCurrentUser'
+import { pusherServer } from '@/utils/pusher'
 
 export async function POST(req: NextRequest) {
     try {
         const currentUser = await getCurrentUser()
-        const body = await req.json()
-        const { userId, isGroup, members, name } = body
-
         if (!currentUser?.id || !currentUser?.email) {
             return new NextResponse('Unauthorized', { status: 400 })
         }
+
+        const body = await req.json()
+        const { userId, isGroup, members, name } = body
 
         if (isGroup && (!members || members.length < 2 || !name)) {
             return new NextResponse('Invalid Request', { status: 400 })
@@ -33,8 +34,15 @@ export async function POST(req: NextRequest) {
                     users: true,
                 },
             })
+            
+            newConversation.users.map((user) => {
+                if (user.email) {
+                    pusherServer.trigger(user.email, 'conversation:new', newConversation)
+                }
+            })
             return NextResponse.json(newConversation)
         }
+
         const existingConversations = await prisma.conversation.findMany({
             where: {
                 OR: [
@@ -51,7 +59,9 @@ export async function POST(req: NextRequest) {
                 ],
             },
         })
+
         const singleConversation = existingConversations[0]
+
         if (singleConversation) {
             return NextResponse.json(singleConversation)
         }
@@ -73,6 +83,13 @@ export async function POST(req: NextRequest) {
                 users: true,
             },
         })
+
+        newConversation.users.map((user) => {
+            if (user.email) {
+                pusherServer.trigger(user.email, 'conversation:new', newConversation)
+            }
+        })
+        
         return NextResponse.json(newConversation)
     } catch (error) {
         return new NextResponse('Internal Server Error', { status: 500 })

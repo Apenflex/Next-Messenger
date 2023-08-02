@@ -30,9 +30,8 @@ const Body: React.FC<BodyProps> = ({ initialMessages = [] }) => {
         pusherClient.subscribe(conversationId)
         bottomRef?.current?.scrollIntoView({ behavior: 'smooth' })
 
-        const messageHandler = (message: FullMessageType) => {
-            console.log('messageHandler')
-            fetchConversations()
+        const messageHandler = async (message: FullMessageType) => {
+            await fetchConversations()
             setMessages((current) => {
                 if (find(current, { id: message.id })) {
                     return current

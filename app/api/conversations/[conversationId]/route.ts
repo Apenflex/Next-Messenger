@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 import prisma from '@/prisma/client'
 import getCurrentUser from '@/utils/actions/getCurrentUser'
+import { pusherServer } from '@/utils/pusher'
 
 interface IParams {
     conversationId?: string
@@ -31,6 +32,13 @@ export async function DELETE(req: NextRequest, { params }: { params: IParams }) 
                 },
             },
         })
+
+        existingConversation.users.map((user) => {
+            if (user.email) {
+                pusherServer.trigger(user.email, 'conversation:remove', existingConversation)
+            }
+        })
+
         return NextResponse.json(deletedConversation)
     } catch (error) {
         return new NextResponse('Internal Server Error', { status: 500 })
