@@ -26,7 +26,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose }) => {
         const res = await fetch(`/api/conversations/${conversationId}`, {
             method: 'DELETE',
         })
-        
+
         if (!res.ok) {
             setIsLoading(false)
             toast.error('Something went wrong')
@@ -61,7 +61,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose }) => {
                         </div>
                     </div>
                 </div>
-                <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+                <div className="mt-5 flex flex-row-reverse gap-x-2 sm:mt-4 sm:flex">
                     <Button disabled={isLoading} danger onClick={onDelete}>
                         Delete
                     </Button>
